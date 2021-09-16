@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <%- include('./parts/head.ejs', { title: "Room" }) %> 
+    <%- include('./parts/head.ejs', { title: "Room" }) %>
 
     <body id="body-room">
         <header>
@@ -16,7 +15,11 @@
         </header>
         <main class="container">
             <section class="section">
-                <form action="" class="form-new-question">
+                <form
+                    action="/question/create/<%= roomId %> "
+                    method="POST"
+                    class="form-new-question"
+                >
                     <textarea
                         name="question"
                         class="textarea question-textarea"
@@ -28,24 +31,26 @@
                 </form>
             </section>
             <section class="section questions-list">
+                <!-- displaying questions -->
+                <% questions.map(question => { %>
                 <article class="question">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, dolores.</p>
+                    <p><%= question.title %></p>
                     <div class="buttons">
-                        <button class="btn-read">Mark as read</button>
-                        <button class="btn-delete">Delete</button>
+                        <button class="btn-read" data-id="<%= question.id %> ">
+                            Mark as read
+                        </button>
+                        <button
+                            class="btn-delete"
+                            data-id="<%= question.id %> "
+                        >
+                            Delete
+                        </button>
                     </div>
                 </article>
-
-                <article class="question read">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, dolores.</p>
-                    <div class="buttons">
-                        <button class="btn-read">Mark as read</button>
-                        <button class="btn-delete">Delete</button>
-                    </div>
-                </article>
+                <% }) %>
+                <!-- end question -->
             </section>
         </main>
-
 
         <!-- MODAL -->
         <div class="modal-wrapper">
@@ -53,7 +58,7 @@
                 <h2 class="modal-title">Lorem, ipsum dolor.</h2>
                 <p class="modal-description">Lorem ipsum dolor sit amet.</p>
                 <form action="" class="form">
-                    <input type="password" name="password" class="input">
+                    <input type="password" name="password" class="input" />
                     <div class="buttons">
                         <button class="modal-btn-cancel">Cancel</button>
                         <button class="modal-btn-confirm">Lorem, ipsum.</button>

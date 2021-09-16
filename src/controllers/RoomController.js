@@ -29,6 +29,21 @@ module.exports = {
         }
 
         await db.close();
+
         res.redirect(`/rooms/${roomId}`);
     },
+
+    async open(req, res){
+        const db = await Database()
+        const roomId = req.params.roomId
+
+        const questions = await db.all(`SELECT * FROM questions WHERE room = ${roomId}`)
+        console.log(questions);
+
+        
+        
+        await db.close()
+
+        res.render("room", { questions: questions, roomId: roomId })
+    }
 };
