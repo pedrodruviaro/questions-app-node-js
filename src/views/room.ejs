@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./parts/head.ejs', { title: "Room" }) %> 
+
+    <body id="body-room">
+        <header>
+            <h1>logo</h1>
+            <div class="user">
+                <img
+                    src="https://avatars.githubusercontent.com/u/82953655?v=4"
+                    alt=""
+                />
+                <span>pedrodruviaro</span>
+            </div>
+        </header>
+        <main class="container">
+            <section class="section">
+                <form action="" class="form-new-question">
+                    <textarea
+                        name="question"
+                        class="textarea question-textarea"
+                        placeholder="Your question"
+                    ></textarea>
+                    <button type="submit" class="btn-primary">
+                        Send Question
+                    </button>
+                </form>
+            </section>
+            <section class="section questions-list">
+                <article class="question">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, dolores.</p>
+                    <div class="buttons">
+                        <button class="btn-read">Mark as read</button>
+                        <button class="btn-delete">Delete</button>
+                    </div>
+                </article>
+
+                <article class="question read">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, dolores.</p>
+                    <div class="buttons">
+                        <button class="btn-read">Mark as read</button>
+                        <button class="btn-delete">Delete</button>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+
+        <!-- MODAL -->
+        <div class="modal-wrapper">
+            <div class="modal animate-pop">
+                <h2 class="modal-title">Lorem, ipsum dolor.</h2>
+                <p class="modal-description">Lorem ipsum dolor sit amet.</p>
+                <form action="" class="form">
+                    <input type="password" name="password" class="input">
+                    <div class="buttons">
+                        <button class="modal-btn-cancel">Cancel</button>
+                        <button class="modal-btn-confirm">Lorem, ipsum.</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
