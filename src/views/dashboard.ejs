@@ -4,8 +4,12 @@
 <%- include('./parts/head.ejs', { title: "Dashboard" }) %>
 
     <body>
+        <header>
+            <img src="<%= user.avatar %> " alt="<%= user.username %> ">
+            <span><%= user.username %> </span>
+        </header>
         <main class="container">
-            <form action="" class="form">
+            <form action="/create-room/<%= user.id %>  " method="POST" class="form">
                 <input
                     type="text"
                     class="input"

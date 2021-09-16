@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+    <%- include('./parts/head.ejs', { title: "Home" }) %>
 
-<%- include('./parts/head.ejs', { title: "Home" }) %> 
+    <body id="body-homepage">
+        <main class="container main-index">
+            <section class="login-form section">
+                <h2>Have an account? Just log in!</h2>
+                <form action="/login" method="POST" class="form">
+                    <input
+                        type="text"
+                        class="input"
+                        name="username"
+                        placeholder="Username"
+                        required
+                        autofocus
+                    />
 
-<body id="body-homepage">
-    <main class="container main-index">
-        <section class="login-form section">
-            <h2>Have an account? Just log in!</h2>
-            <form action="/login" method="POST" class="form">
-                <input type="text" class="input" name="username" placeholder="Username" required>
-                <input type="password" class="input" name="password" placeholder="Password" required> 
+                    <input
+                        type="password"
+                        class="input"
+                        name="password"
+                        placeholder="Password"
+                        required
+                    />
 
-                <!-- error message -->
-                
-                <button type="submit" class="btn-primary">Login</button>
-            </form>
-        </section>
-        <section class="section">
-            <h2>Create a new account</h2>
-            <a href="/create-user" class="btn-primary">Create an account</a>
-        </section>
-        <p class="low-text section">or</p>
-        <section class="section">
-            <form action="" class="form">
-                <input type="number" placeholder="Room Code" name="roomCode" class="input">
-                <button type="submit" class="btn-primary">Join Room</button>
-            </form>
-        </section>
-    </main>
-</body>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+            </section>
+            <section class="section">
+                <h2>Create a new account</h2>
+                <a href="/create-user" class="btn-primary">Create an account</a>
+            </section>
+            <p class="low-text section">or</p>
+            <section class="section">
+                <form action="" class="form">
+                    <input
+                        type="number"
+                        placeholder="Room Code"
+                        name="roomCode"
+                        class="input"
+                    />
+                    <button type="submit" class="btn-primary">Join Room</button>
+                </form>
+            </section>
+        </main>
+    </body>
 </html>

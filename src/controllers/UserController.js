@@ -35,7 +35,7 @@ module.exports = {
         await db.close();
 
         //redirecionar para dashboard
-        res.redirect('/dashboard')
+        res.redirect(`/dashboard/${userId}`)
     },
 
     async login(req, res){
@@ -50,19 +50,21 @@ module.exports = {
         console.log(matchUser);
 
         if(!matchUser){
-            // res.render("index")
-            return
+            res.redirect('/login-fail')
         }
         
         if(matchUser.password === password){
-            res.redirect("/dashboard")
+            res.redirect(`/dashboard/${matchUser.id}`)
         }
 
         if(matchUser.password !== password){
-            // res.redirect('/login-fail')
-            res.render("index", { error: "Wrong password" })
+            res.redirect('/login-fail')
         }
 
         await db.close()
     },
+
+    fail(req, res){
+        res.render('login-fail')
+    }
 };
