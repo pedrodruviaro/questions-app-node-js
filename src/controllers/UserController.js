@@ -37,4 +37,32 @@ module.exports = {
         //redirecionar para dashboard
         res.redirect('/dashboard')
     },
+
+    async login(req, res){
+        const db = await Database()
+
+        const username = req.body.username
+        const password = req.body.password
+
+        const users = await db.all(`SELECT * FROM users`)
+
+        const matchUser = users.find(user => user.username === username)
+        console.log(matchUser);
+
+        if(!matchUser){
+            // res.render("index")
+            return
+        }
+        
+        if(matchUser.password === password){
+            res.redirect("/dashboard")
+        }
+
+        if(matchUser.password !== password){
+            // res.redirect('/login-fail')
+            res.render("index", { error: "Wrong password" })
+        }
+
+        await db.close()
+    },
 };

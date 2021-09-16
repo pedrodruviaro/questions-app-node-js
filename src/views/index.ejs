@@ -7,9 +7,12 @@
     <main class="container main-index">
         <section class="login-form section">
             <h2>Have an account? Just log in!</h2>
-            <form action="" class="form">
+            <form action="/login" method="POST" class="form">
                 <input type="text" class="input" name="username" placeholder="Username" required>
-                <input type="password" class="input" name="password" placeholder="Password" required>
+                <input type="password" class="input" name="password" placeholder="Password" required> 
+
+                <!-- error message -->
+                
                 <button type="submit" class="btn-primary">Login</button>
             </form>
         </section>
