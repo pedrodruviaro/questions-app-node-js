@@ -4,14 +4,16 @@
 
     <body id="body-room">
         <header>
-            <h1>logo</h1>
-            <div class="user">
-                <img
-                    src="https://avatars.githubusercontent.com/u/82953655?v=4"
-                    alt=""
-                />
-                <span>pedrodruviaro</span>
+            <div id="room-id" data-roomId="<%= roomId %>">
+                <div>
+                    <img
+                        src="/assets/images/copy.svg"
+                        alt="Copy to clippboard"
+                    />
+                </div>
+                <span class="room-code"># <%= roomId %></span>
             </div>
+            <a href="/create-pass" class="btn-primary">Create new room</a>
         </header>
         <main class="container">
             <section class="section">
@@ -24,6 +26,8 @@
                         name="question"
                         class="textarea question-textarea"
                         placeholder="Your question"
+                        autofocus
+                        required
                     ></textarea>
                     <button type="submit" class="btn-primary">
                         Send Question
@@ -31,24 +35,55 @@
                 </form>
             </section>
             <section class="section questions-list">
-                <!-- displaying questions -->
+                <!-- displaying no read  questions -->
+
+                <% if(questions.length <= 0 && readedQuestions.length <= 0){ %>
+                    <%- include('./parts/no-questions.ejs') %>
+                <% } %>
+
                 <% questions.map(question => { %>
-                <article class="question">
+                <article class="question animate-pop">
                     <p><%= question.title %></p>
-                    <div class="buttons">
+                    <div class="question-buttons">
                         <button class="btn-read" data-id="<%= question.id %> ">
+                            <img
+                                src="/assets/images/check.svg"
+                                alt="Mark as read"
+                            />
                             Mark as read
                         </button>
                         <button
                             class="btn-delete"
                             data-id="<%= question.id %> "
                         >
+                            <img
+                                src="/assets/images/delete.svg"
+                                alt="Delete question"
+                            />
                             Delete
                         </button>
                     </div>
                 </article>
                 <% }) %>
-                <!-- end question -->
+                <!-- end no read questions -->
+                <!-- no read questions -->
+                <% readedQuestions.map(question => { %>
+                <article class="question animate-pop read">
+                    <p><%= question.title %></p>
+                    <div class="question-buttons">
+                        <button
+                            class="btn-delete"
+                            data-id="<%= question.id %> "
+                        >
+                            <img
+                                src="/assets/images/delete.svg"
+                                alt="Delete question"
+                            />
+                            Delete
+                        </button>
+                    </div>
+                </article>
+                <% }) %>
             </section>
         </main>
 
@@ -57,11 +92,26 @@
             <div class="modal animate-pop">
                 <h2 class="modal-title">Lorem, ipsum dolor.</h2>
                 <p class="modal-description">Lorem ipsum dolor sit amet.</p>
-                <form action="" class="form">
-                    <input type="password" name="password" class="input" />
-                    <div class="buttons">
-                        <button class="modal-btn-cancel">Cancel</button>
-                        <button class="modal-btn-confirm">Lorem, ipsum.</button>
+                <form method="POST" action="#" id="modal-form">
+                    <input
+                        autofocus
+                        type="password"
+                        name="password"
+                        class="input"
+                        placeholder="Room Password"
+                        required
+                    />
+                    <div class="split">
+                        <button
+                            class="modal-btn-cancel btn-secondary"
+                            type="button"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="submit"
+                            class="modal-btn-confirm green"
+                        ></button>
                     </div>
                 </form>
             </div>
